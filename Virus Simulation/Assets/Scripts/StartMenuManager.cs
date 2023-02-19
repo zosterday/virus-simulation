@@ -23,8 +23,18 @@ public class StartMenuManager : MonoBehaviour
     {
         SceneManager.LoadScene(SimulationScene);
 
-        var infectionChance = Mathf.Min(int.Parse(infectionChanceInput.text), 100);
-        var recoveryChance = Mathf.Min(int.Parse(recoveryChanceInput.text), 100);
+        if (!int.TryParse(infectionChanceInput.text, out var infectionChance))
+        {
+            infectionChance = 100;
+        }
+
+        if (!int.TryParse(recoveryChanceInput.text, out var recoveryChance))
+        {
+            recoveryChance = 30;
+        }
+
+        infectionChance = Mathf.Min(infectionChance, 100);
+        recoveryChance = Mathf.Min(recoveryChance, 100);
 
         StateMachine.InfectionChance = infectionChance;
         StateMachine.RecoveryChance = recoveryChance;
