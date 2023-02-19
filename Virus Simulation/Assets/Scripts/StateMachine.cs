@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StateMachine : MonoBehaviour
 {
-    public static int InfectionChance = 100;
+    public static int InfectionChance;
 
-    public static int RecoveryChance = 30;
+    public static int RecoveryChance;
 }

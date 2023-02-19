@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//TODO: Figure out how to make cells bounce off walls and everything and maintain momentum/velocity after bounce
-
 public class Cell : MonoBehaviour
 {
     public const string CellTag = "Cell";

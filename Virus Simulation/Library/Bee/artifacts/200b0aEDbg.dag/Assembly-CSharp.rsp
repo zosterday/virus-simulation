@@ -375,7 +375,6 @@
 -r:"Library/Bee/artifacts/200b0aEDbg.dag/UnityEngine.UI.ref.dll"
 "Assets/Scripts/Cell.cs"
 "Assets/Scripts/GameManager.cs"
-"Assets/Scripts/SpawnManager.cs"
 "Assets/Scripts/StartMenuManager.cs"
 "Assets/Scripts/StateMachine.cs"
 -langversion:9.0

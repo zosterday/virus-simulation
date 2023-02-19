@@ -10,6 +10,10 @@ public class StartMenuManager : MonoBehaviour
 {
     private const string SimulationScene = "SimulationScene";
 
+    private const int DefaultInfectionChance = 100;
+
+    private const int DefaultRecoveryChance = 30;
+
     [SerializeField]
     private Button startButton;
 
@@ -25,12 +29,12 @@ public class StartMenuManager : MonoBehaviour
 
         if (!int.TryParse(infectionChanceInput.text, out var infectionChance))
         {
-            infectionChance = 100;
+            infectionChance = DefaultInfectionChance;
         }
 
         if (!int.TryParse(recoveryChanceInput.text, out var recoveryChance))
         {
-            recoveryChance = 30;
+            recoveryChance = DefaultRecoveryChance;
         }
 
         infectionChance = Mathf.Min(infectionChance, 100);
