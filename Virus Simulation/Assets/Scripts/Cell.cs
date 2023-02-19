@@ -2,16 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//TODO: Get the infection and recovery chance from the start menu input
 //TODO: Figure out how to make cells bounce off walls and everything and maintain momentum/velocity after bounce
 
 public class Cell : MonoBehaviour
 {
     public const string CellTag = "Cell";
-
-    private const float InfectionChance = 1f;
-
-    private const float RecoveryChance = 0.5f;
 
     public bool Infected { get; set; }
 
@@ -30,17 +25,9 @@ public class Cell : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         //Get Rigidbody component
-        rb = GetComponent<Rigidbody2D>();        
+        rb = GetComponent<Rigidbody2D>();
 
-        //Get random direction
-        var direction = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
-
-        //Get random speed
-        var speed = Random.Range(15f, 40f);
-
-        //Add force to move cell
-        rb.AddForce(direction.normalized * speed);
-
+        AddRandomForce();
     }
 
     // Update is called once per frame
@@ -58,13 +45,13 @@ public class Cell : MonoBehaviour
 
         if (!other.CompareTag(CellTag))
         {
-            //TODO: Do whatever general logic for hitting wall
+            AddRandomForce();
             return;
         }
 
         var otherCell = other.GetComponent<Cell>();
 
-        if (otherCell.Infected)
+        if (otherCell.Infected && !Infected)
         {
             TryInfect();
         }
@@ -74,7 +61,7 @@ public class Cell : MonoBehaviour
     {
         var rand = Random.Range(0f, 1f);
 
-        if (rand > InfectionChance)
+        if (rand > StateMachine.InfectionChance)
         {
             return;
         }
@@ -93,9 +80,14 @@ public class Cell : MonoBehaviour
 
     private void TryRecover()
     {
+        if (!GameManager.Instance.IsSimActive)
+        {
+            return;
+        }
+
         var rand = Random.Range(0f, 1f);
 
-        if (rand > RecoveryChance)
+        if (rand > StateMachine.RecoveryChance)
         {
             return;
         }
@@ -110,5 +102,17 @@ public class Cell : MonoBehaviour
     {
         yield return new WaitForSeconds(10f);
         TryRecover();
+    }
+
+    private void AddRandomForce()
+    {
+        //Get random direction
+        var direction = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
+
+        //Get random speed
+        var speed = Random.Range(20f, 65f);
+
+        //Add force to move cell
+        rb.AddForce(direction.normalized * speed);
     }
 }

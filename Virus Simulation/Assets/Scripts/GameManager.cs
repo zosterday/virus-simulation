@@ -2,9 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    private const string StartScene = "StartScene";
+
+    private const float SimTime = 55f;
+
     public static GameManager Instance
     {
         get
@@ -25,6 +30,12 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private TextMeshProUGUI infectedCountText;
+
+    [SerializeField]
+    private TextMeshProUGUI healthyCountResultText;
+
+    [SerializeField]
+    private TextMeshProUGUI infectedCountResultText;
 
     [SerializeField]
     private GameObject resultsPanel;
@@ -52,6 +63,9 @@ public class GameManager : MonoBehaviour
         healthyCount = cellObjs.Length - 1;
         infectedCount = 1;
 
+        healthyCountText.text = $"Healthy cell count: {healthyCount}";
+        infectedCountText.text = $"Infected cell count: {infectedCount}";
+
         IsSimActive = true;
 
         StartCoroutine(WaitForEndSim());
@@ -60,6 +74,7 @@ public class GameManager : MonoBehaviour
     public void UpdateHealthyCount(int amount)
     {
         healthyCount += amount;
+        healthyCountText.text = $"Healthy cell count: {healthyCount}";
 
         if (healthyCount == 0)
         {
@@ -70,17 +85,25 @@ public class GameManager : MonoBehaviour
     public void UpdateInfectedCount(int amount)
     {
         infectedCount += amount;
+        infectedCountText.text = $"Infected cell count: {infectedCount}";
     }
 
     private IEnumerator WaitForEndSim()
     {
-        yield return new WaitForSeconds(50f);
+        yield return new WaitForSeconds(SimTime);
         EndSim();
     }
 
     private void EndSim()
     {
         IsSimActive = false;
+        healthyCountResultText.text = $"Healthy cell count: {healthyCount}";
+        infectedCountResultText.text = $"Infected cell count: {infectedCount}";
         resultsPanel.SetActive(true);
+    }
+
+    public void RestartSim()
+    {
+        SceneManager.LoadScene(StartScene);
     }
 }
