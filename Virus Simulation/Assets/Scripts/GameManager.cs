@@ -46,8 +46,7 @@ public class GameManager : MonoBehaviour
 
     private int infectedCount;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         instance = this;
 
@@ -65,10 +64,19 @@ public class GameManager : MonoBehaviour
 
         healthyCountText.text = $"Healthy cell count: {healthyCount}";
         infectedCountText.text = $"Infected cell count: {infectedCount}";
+    }
 
+    // Start is called before the first frame update
+    void Start()
+    {
         IsSimActive = true;
 
         StartCoroutine(WaitForEndSim());
+    }
+
+    private void OnDestroy()
+    {
+        instance = null;
     }
 
     public void UpdateHealthyCount(int amount)
