@@ -49,6 +49,12 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        IsSimActive = true;
 
         //Set random cell to be original infected cell
         var cellObjs = GameObject.FindGameObjectsWithTag(Cell.CellTag);
@@ -64,12 +70,6 @@ public class GameManager : MonoBehaviour
 
         healthyCountText.text = $"Healthy cell count: {healthyCount}";
         infectedCountText.text = $"Infected cell count: {infectedCount}";
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        IsSimActive = true;
 
         StartCoroutine(WaitForEndSim());
     }

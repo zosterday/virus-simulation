@@ -17,14 +17,17 @@ public class Cell : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         //Get SpriteRenderer component
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         //Get Rigidbody component
         rb = GetComponent<Rigidbody2D>();
+    }
 
+    private void Start()
+    {
         AddRandomForce();
     }
 
