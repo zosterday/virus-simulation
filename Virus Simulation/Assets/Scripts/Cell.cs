@@ -60,7 +60,7 @@ public class Cell : MonoBehaviour
 
     private void TryInfect()
     {
-        var rand = Random.Range(0f, 1f);
+        var rand = Random.Range(0, 100);
 
         if (rand > StateMachine.InfectionChance)
         {
@@ -86,7 +86,7 @@ public class Cell : MonoBehaviour
             return;
         }
 
-        var rand = Random.Range(0f, 1f);
+        var rand = Random.Range(0, 100);
 
         if (rand > StateMachine.RecoveryChance)
         {
