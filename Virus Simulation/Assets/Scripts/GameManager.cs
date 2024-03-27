@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 {
     private const string StartScene = "StartScene";
 
-    private const float SimTime = 55f;
+    private const float SimTime = 30f;
 
     public static GameManager Instance
     {

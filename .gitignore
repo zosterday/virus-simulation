@@ -58,5 +58,7 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
-Virus Simulation/Library/PackageCache/com.unity.burst@1.6.6/.Runtime/hostlin/lld
-Virus Simulation/Library/PackageCache/com.unity.burst@1.6.6/.Runtime/hostmac/lld
+Virus Simulation/Library/*
+Virus Simulation/Logs/*
+Virus Simulation/Temp/*
+.DS_Store
