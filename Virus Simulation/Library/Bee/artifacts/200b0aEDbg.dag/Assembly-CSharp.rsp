@@ -374,7 +374,10 @@
 -r:"Library/Bee/artifacts/200b0aEDbg.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/200b0aEDbg.dag/UnityEngine.UI.ref.dll"
 "Assets/Scripts/Cell.cs"
+"Assets/Scripts/ColorCompCell.cs"
 "Assets/Scripts/GameManager.cs"
+"Assets/Scripts/GameManagerColorComp.cs"
+"Assets/Scripts/NewEnumeration.cs"
 "Assets/Scripts/StartMenuManager.cs"
 "Assets/Scripts/StateMachine.cs"
 -langversion:9.0
