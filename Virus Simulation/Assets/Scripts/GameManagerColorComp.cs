@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManagerColorComp : MonoBehaviour
 {
-    private const float SimTime = 50f;
+    private const float SimTime = 45f;
 
     public static GameManagerColorComp Instance
     {
